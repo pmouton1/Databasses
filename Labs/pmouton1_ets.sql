@@ -60,10 +60,10 @@ create table [TripLeg] (
 
 
 	Primary Key (TripPlanid, TransitLine),
-	FOREIGN KEY (StartStation) REFERENCES Stations(Station),
-	FOREIGN KEY (FinishStation) REFERENCES Stations(Station),
-	FOREIGN KEY (TripPlanid) REFERENCES TripPlans(TripPlanid),
-	FOREIGN KEY (TransitLine) REFERENCES TransitLines(Transitline)
+	CONSTRAINT FK_TripLeg_Stations FOREIGN KEY (StartStation) REFERENCES Stations(Station),
+	CONSTRAINT FK_TripLeg_FinishStations FOREIGN KEY (FinishStation) REFERENCES Stations(Station),
+	CONSTRAINT FK_TripLeg_TripPlanid FOREIGN KEY (TripPlanid) REFERENCES TripPlans(TripPlanid),
+	CONSTRAINT FK_TripLeg_TransitLines FOREIGN KEY (TransitLine) REFERENCES TransitLines(Transitline)
 );
 
 
