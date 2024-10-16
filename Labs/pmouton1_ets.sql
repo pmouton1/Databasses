@@ -56,7 +56,7 @@ create table [TripLeg] (
 	FinishStation varchar(50) not null,
 	StartDeparture datetime not null,
 	FinishArrival datetime not null,
-	Duration as CAST((StartDeparture - FinishArrival) as int)
+	Duration as DATEDIFF(MIN, StartDeparture, FinishArrival)
 
 
 	Primary Key (TripPlanid, TransitLine),
