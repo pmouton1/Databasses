@@ -11,14 +11,15 @@ go
 use pmouton1_ets
 go 
 
+drop table if exists [TripLeg]
+go	
 drop table if exists [TripPlans]
 go
 drop table if exists [TransitLines]
 go
 drop table if exists [Stations]
 go
-drop table if exists [TripLeg]
-go
+
 
 create table [TripPlans] (
 
@@ -38,14 +39,14 @@ create table [TransitLines] (
 
 CREATE TABLE Stations (
 
-    Station varchar(50),
-    StreetAddress varchar(30) NOT NULL,
+    	Station varchar(50),
+    	StreetAddress varchar(30) NOT NULL,
 	City varchar(30) NOT NULL DEFAULT 'Edmonton',
 	Province char(2) NOT NULL DEFAULT 'AB',
-	PostalCode char(7) Check(PostalCode like '___ ___'),
+	PostalCode char(7) Check(PostalCode like '[A-Z][0-9][A-Z] [0-9][A-Z][0-9]'),
 	
 	Primary Key(Station)
-	);
+);
 
 create table [TripLeg] (
 
@@ -55,7 +56,7 @@ create table [TripLeg] (
 	FinishStation varchar(50) not null,
 	StartDeparture datetime not null,
 	FinishArrival datetime not null,
-	Duration as (StartDeparture - FinishArrival),
+	Duration as CAST((StartDeparture - FinishArrival) as int)
 
 
 	Primary Key (TripPlanid, TransitLine),
