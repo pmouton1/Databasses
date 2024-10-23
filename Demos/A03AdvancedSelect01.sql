@@ -1,4 +1,4 @@
-use NorthwindTraders
+use sdytiuk_Northwind
 go
 
 -- how many employees are there?
