@@ -39,9 +39,9 @@ order by s.CompanyName, p2d.ProductID
 use ClassTrak
 go
 
-select r.ass_desc + '(' +  at.ass_type_desc + ')' as 'Desc(Type)', rs.score/MAX(rs.score) 'AVG'--, COUNT(rs.student_id) 'NumMarked'
+select r.ass_desc + '(' +  at.ass_type_desc + ')' as 'Desc(Type)', Format('money',rs.score*100/r.max_score) 'AVG', COUNT(rs.score) 'NumMarked'
 from Requirements r join Results rs
 on r.req_id = rs.req_id join Assignment_type at
 on at.ass_type_id = r.ass_type_id
 where rs.class_id = 88
-group by 'Desc(Type)', rs.score
+group by r.ass_desc + '(' +  at.ass_type_desc + ')', rs.score, rs.student_id, r.max_score
